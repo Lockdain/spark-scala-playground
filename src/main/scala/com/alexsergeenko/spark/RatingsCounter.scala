@@ -18,13 +18,16 @@ object RatingsCounter {
    
     // Load up each line of the ratings data into an RDD
     val lines = sc.textFile("../ml-100k/u.data")
+//    lines.foreach(println)
     
     // Convert each line to a string, split it out by tabs, and extract the third field.
     // (The file format is userID, movieID, rating, timestamp)
     val ratings = lines.map(x => x.toString().split("\t")(2))
-    
+//    ratings.foreach(println)
     // Count up how many times each value (rating) occurs
+
     val results = ratings.countByValue()
+//    results.foreach(println)
     
     // Sort the resulting map of (rating, count) tuples
     val sortedResults = results.toSeq.sortBy(_._1)
