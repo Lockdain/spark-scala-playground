@@ -16,7 +16,7 @@ object RatingsCounter {
     // Create a SparkContext using every core of the local machine, named RatingsCounter
     val sc = new SparkContext("local[*]", "RatingsCounter")
    
-    // Load up each line of the ratings data into an RDD
+/*    // Load up each line of the ratings data into an RDD
     val lines = sc.textFile("../ml-100k/u.data")
 //    lines.foreach(println)
     
@@ -33,6 +33,13 @@ object RatingsCounter {
     val sortedResults = results.toSeq.sortBy(_._1)
     
     // Print each result on its own line.
-    sortedResults.foreach(println)
+    sortedResults.foreach(println)*/
+
+    val lines2 = sc.textFile("../ml-100k/u.data")
+    lines2
+      .take(20)
+      .map(_.toString.split("\t")(1))
+      .toSeq
+      .foreach(println)
   }
 }
